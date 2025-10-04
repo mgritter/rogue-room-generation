@@ -1,0 +1,19 @@
+2^32 seeds
+
+462 bitmaps, each is 0.5 GiB
+
+total size = 231 GiB
+
+batch size 2^25, 128 batches
+
+Batch size is 33554432 samples
+Each bitset is 4194304 bytes
+Total in-memory size is 1848 MiB
+
+real	0m10.569s
+user	0m8.371s
+sys	0m2.196s
+
+1.8 GiB / 25 MiB/s = 74 seconds
+
+
