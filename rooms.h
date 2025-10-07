@@ -1,3 +1,4 @@
+// -*- mode: c++ -*-
 #include <array>
 
 const int NUMCOLS = 80;
