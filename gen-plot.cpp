@@ -89,15 +89,15 @@ main( int argc, char *argv[] ) {
 
     // post-select
     // TODO: make this an argument
-    if ( rooms[0].gone || rooms[0].max.x != 4 || rooms[0].max.y != 4 ||
-	 rooms[0].pos.x != 1 || rooms[0].pos.y != 1) {
-      continue;
-    }
+    //if ( rooms[0].gone || rooms[0].max.x != 4 || rooms[0].max.y != 4 ||
+    //	 rooms[0].pos.x != 1 || rooms[0].pos.y != 1) {
+    //  continue;
+    //}
     
-    if ( rooms[1].gone || rooms[1].max.x != 4 || rooms[1].max.y != 4 ||
-	 rooms[1].pos.x != bsze.x + 1 || rooms[1].pos.y != 1) {
-      continue;
-    }
+    // if ( rooms[1].gone || rooms[1].max.x != 4 || rooms[1].max.y != 4 ||
+    //	 rooms[1].pos.x != bsze.x + 1 || rooms[1].pos.y != 1) {
+    //  continue;
+    //}
     
     //if ( rooms[2].gone || rooms[2].max.x != 4 || rooms[2].max.y != 4 ||
     //  	 rooms[2].pos.x != 2 * bsze.x + 1 || rooms[2].pos.y != 1) {

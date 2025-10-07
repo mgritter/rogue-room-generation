@@ -2,7 +2,7 @@ import cairo
 import sys
 
 inputFilename="all-rooms.csv"
-if len(sys.argv) > 1:
+if len(sys.argv) >= 2:
     inputFilename=sys.argv[1]
 
 # 9 rooms in a 3x3 grid
@@ -49,6 +49,9 @@ def draw_room( room_num, row, col, height, width, y, x, label,
     c.rectangle(upper_x + x*2, upper_y + labelHeight + y*2, width *2, height*2)
     c.fill()
 
+show_forbidden_rooms = False
+show_total_distribution = True
+
 with open( inputFilename, "r" ) as f:
     for line in f:
         toks = line.split( "," )
@@ -62,26 +65,49 @@ with open( inputFilename, "r" ) as f:
         width = int(toks[4])
         x = int(toks[5])
         label = toks[6].rstrip()
-        if room <= 1 and label != "0":
-            draw_room(room,
-                      feature // 50,
-                      feature % 50,
-                      height,
-                      width,
-                      y,
-                      x,
-                      label)
-        if label == "0" and room > 1:
-            draw_room(room,
-                      feature // 50,
-                      feature % 50,
-                      height,
-                      width,
-                      y,
-                      x,
-                      "",
-                      fgColor=(0.75,0,0),
-                      )
-
+        if show_forbidden_rooms:
+            if room <= 1 and label != "0":
+                draw_room(room,
+                          feature // 50,
+                          feature % 50,
+                          height,
+                          width,
+                          y,
+                          x,
+                          label)
+            if label == "0" and room > 1:
+                draw_room(room,
+                          feature // 50,
+                          feature % 50,
+                          height,
+                          width,
+                          y,
+                          x,
+                          "",
+                          fgColor=(0.75,0,0),
+                          )
+        if show_total_distribution:
+            if label != "0":
+                draw_room(room,
+                          feature // 50,
+                          feature % 50,
+                          height,
+                          width,
+                          y,
+                          x,
+                          label)
+            elif room > 1:
+                draw_room(room,
+                          feature // 50,
+                          feature % 50,
+                          height,
+                          width,
+                          y,
+                          x,
+                          "",
+                          fgColor=(0.75,0,0),
+                          )
+            
+            
 surface.write_to_png("example.png")
 
