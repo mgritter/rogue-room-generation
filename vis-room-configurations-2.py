@@ -5,6 +5,10 @@ inputFilename="all-rooms.csv"
 if len(sys.argv) >= 2:
     inputFilename=sys.argv[1]
 
+outputFilename="example.png"
+if len(sys.argv) >= 3:
+    outputFilename=sys.argv[2]
+    
 # 9 rooms in a 3x3 grid
 # Up to 50 cells wide and 51 cells tall in each grid
 # Each cell needs to have a number and 7x25 picture
@@ -51,6 +55,24 @@ def draw_room( room_num, row, col, height, width, y, x, label,
 
 show_forbidden_rooms = False
 show_total_distribution = True
+num_rooms_postselected = 0
+
+with open( inputFilename, "r" ) as f:
+    num_per_room = {}
+    for line in f:
+        toks = line.split( "," )
+        if len(toks) != 7:
+            continue
+        
+        room = int(toks[0])
+        label = toks[6].rstrip()
+
+        if label != "0":
+            num_per_room[room] = num_per_room.get( room, 0 ) + 1
+
+    num_rooms_postselected = sum(1 for count in num_per_room.values()
+                                 if count == 1)
+    print( "Num postselected inferred to be", num_rooms_postselected )
 
 with open( inputFilename, "r" ) as f:
     for line in f:
@@ -96,7 +118,9 @@ with open( inputFilename, "r" ) as f:
                           y,
                           x,
                           label)
-            elif room > 1:
+            # Display in red configurations that would ordinarily be
+            # permitted but do not appear in the post-selected sample.
+            elif (room >= 3 or y > 0) and room >= num_rooms_postselected: 
                 draw_room(room,
                           feature // 50,
                           feature % 50,
@@ -109,5 +133,5 @@ with open( inputFilename, "r" ) as f:
                           )
             
             
-surface.write_to_png("example.png")
+surface.write_to_png(outputFilename)
 
