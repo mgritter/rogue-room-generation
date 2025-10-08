@@ -17,8 +17,8 @@ public:
     if (range < 1) {
 	return 0;
     }
-    int val = (this->seed >> 16) & 0xffff;
     this->seed = this->seed*11109+13849;
+    int val = (this->seed >> 16) & 0xffff;
     // std::cout << this->seed << " " << val << "\n";
     return abs(val) % range;
   }
