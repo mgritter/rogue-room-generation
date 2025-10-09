@@ -128,8 +128,8 @@ for size in sorted(x):
     cum += float( p )
     expected = p * 2**30
     if expected < 10:
-        print( f"{size:6} {float(p):15.3e} {cum:.10f} {float(expected):10.2}" )
+        print( f"{size:6} {float(p):15.3e} {cum:.12f} {float(expected):10.2}" )
     else:
-        print( f"{size:6} {float(p):15.3e} {cum:.10f} {int(expected):10}" )
+        print( f"{size:6} {float(p):15.3e} {cum:.12f} {int(expected):10}")
         
     

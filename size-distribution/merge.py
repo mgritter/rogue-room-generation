@@ -17,11 +17,11 @@ with open( "expected-distribution.txt" ) as f:
             continue
         #print( line[0:6] )
         size = int( line[0:6].lstrip() )
-        prob = float( line[23:35] )
+        prob = float( line[23:37] )
         expected_count = int( cumulative * prob )
         expected_dist.append( (size, expected_count) )
 
-print( "size", "expected", "actual", "delta" )
+print( "size", "expected", "actual", "delta", "size_delta" )
 i = 0
 actual = 0
 prev_expected = 0
