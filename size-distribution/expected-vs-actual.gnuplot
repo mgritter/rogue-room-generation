@@ -1,4 +1,4 @@
-set term png
+set term png size 1500,800
 set output "expected-vs-actual.png"
 plot "expected-vs-actual.dat" using 1:5 with points title "actual minus expected, per size"
 set output "expected-vs-actual-cumulative.png"
